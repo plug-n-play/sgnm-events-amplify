@@ -14,6 +14,7 @@ const EventsTable = ({
   events,
   onEditEventClick,
   onDeleteEventClick,
+  signOut,
 }) => {
   return (
     <Table
@@ -34,7 +35,8 @@ const EventsTable = ({
           <TableCell as="th">Phone</TableCell>
           <TableCell as="th">Time</TableCell>
           <TableCell as="th"></TableCell>
-          <TableCell as="th"></TableCell>
+          <TableCell as="th"> <button onClick={signOut}>Sign out</button> </TableCell>
+          
         </TableRow>
       </TableHead>
       <TableBody>

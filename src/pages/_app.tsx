@@ -1,6 +1,11 @@
 import Head from 'next/head'
+import { Amplify } from "aws-amplify";
+import { Authenticator } from '@aws-amplify/ui-react';
+import awsExports from "../aws-exports";
 import '../styles/globals.css'
 import { AppProps } from 'next/app'
+
+Amplify.configure({ ...awsExports, ssr: true });
 
 export default function SGNMEvents({ Component, pageProps }: AppProps) {
   return (
@@ -32,7 +37,11 @@ export default function SGNMEvents({ Component, pageProps }: AppProps) {
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
         <meta name="theme-color" content="#317EFB" />
       </Head>
-      <Component {...pageProps} />
+      <Authenticator  hideSignUp={true}>
+        {({ signOut }) => (
+          <Component {...pageProps} signOut={signOut} />
+        )}
+      </Authenticator>
     </>
   )
 }
